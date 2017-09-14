@@ -1,0 +1,17 @@
+{
+  "path": {
+    "dist": "../../../../../Build/Website/areas/Corporate/",
+    "views": "../Views/**/*.*",
+
+  },
+  "emailFiles": {
+      "buildRoot": "../../../../build/Website/areas/Corporate/",
+      "stylesSrc": "./assets/styles/mail.scss",
+      "stylesDest": "styles/",
+      "stylesName": "mail.css",
+      "styleSheet": "/Areas/Corporate/css/mail.css",
+      "viewsDest": "Views",
+      "viewFiles": "Views/**/*.inky.cshtml",
+      "emailTemplate": "Views/Website/Layouts/InkyEmailWrapper.inky.cshtml"
+    }
+}

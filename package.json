@@ -1,0 +1,51 @@
+{
+  "name": "dot-inky",
+  "version": "1.0.0",
+  "author": "Wieteke Ozturk <wieteke@pettico.de>",
+  "homepage": "http://pettico.de",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wozturk/dot-inky"
+  },
+  "bugs": {
+    "url": "https://github.com/wozturk/dot-inky/issues"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "http://opensource.org/licenses/MIT"
+    }
+  ],
+  "scripts": {},
+  "engines": {},
+  "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-core": "^6.25.0",
+    "babel-preset-es2015": "^6.22.0",
+    "foundation-emails": "^2.2.1",
+    "fs": "0.0.1-security",
+    "gulp": "^3.9.0",
+    "gulp-autoprefixer": "^3.1.1",
+    "gulp-babel": "^6.1.2",
+    "gulp-cli": "*",
+    "gulp-htmlmin": "^3.0.0",
+    "gulp-if": "^2.0.2",
+    "gulp-inline-css": "^3.1.0",
+    "gulp-load-plugins": "^1.5.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-replace": "^0.6.1",
+    "gulp-rev": "^7.1.2",
+    "gulp-sass": "^2.3.2",
+    "gulp-sourcemaps": "^1.12.0",
+    "inky": "^1.3.7",
+    "lazypipe": "^1.0.1",
+    "run-sequence": "^1.2.2",
+    "siphon-media-query": "^1.0.0",
+    "yargs": "^8.0.2"
+  },
+  "dependencies": {
+    "babel-register": "^6.24.1",
+    "socket.io": "^2.0.3"
+  }
+}

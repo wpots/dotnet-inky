@@ -1,0 +1,10 @@
+﻿
+//you don't need to redefine everything. Use the variables you already have defined for your project
+@import "scss/1_settings/settings.colors"; //for example
+//define email variables here. These variables are used in the foundation-emails styling. don't rename them.
+@import "scss/9_emails/emails.settings";
+//These stylings are needed for foundation for email,, imported from node_modules. they make your email template responsive and bulletproof.
+@import "foundation-emails";
+//and here go your own styling. make it awesome!
+@import "scss/9_emails/email.global";
+@import "scss/9_emails/email.header.example";
