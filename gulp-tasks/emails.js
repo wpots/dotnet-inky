@@ -6,7 +6,8 @@
     plugins = require('gulp-load-plugins'),//use packages without having to endlessly requiring them
     siphon = require('siphon-media-query'),//extract media query specific css from stylesheet
     runsequence = require('run-sequence'),
-    yargs = require('yargs');//parse arguments and options
+    yargs = require('yargs'),//parse arguments and options
+    path = require('path');
 
 //what a nag to have to keep writing plugins.
 var $ = plugins();
@@ -46,23 +47,16 @@ gulp.task('email-inline', function () {
 
 // Inlines CSS into HTML, adds media query CSS into the <style> tag of the email, and compresses the HTML
 function inliner(css) {
-    var css = fs.readFileSync(css).toString();
-    var mqCss = siphon(css);
-    var newCss = mqCss.replace(/@/g, '@@');// to prevent conflicts with @ of .net
-    var pipe = lazypipe()
-        .pipe($.inlineCss, {
-            applyStyleTags: false,
-            removeStyleTags: true,
-            preserveMediaQueries: true,
-            removeLinkTags: true
-        })
-        .pipe($.replace, '<!-- <style> -->', '<style>' + newCss + '</style>')
-        .pipe($.replace, '<link rel="stylesheet" type="text/css" href="'+ config.emailFiles.styleSheet +'">', '')
-        .pipe($.htmlmin, {
-            //collapseWhitespace: true,
-            //preserveLineBreaks: true,
-            minifyCSS: true
-        });
+    var css = fs.readFileSync(css).toString(),
+        mqCss = siphon(css),
+        newCss = mqCss.replace(/@/g, '@@'),// to prevent conflicts with @ of .net
+        pipe = lazypipe()
+                .pipe($.inlineCss, {
+                    extraCss: css,
+                    lowerCaseTags: false,
+                    xmlMode: false
+                    })
+                .pipe($.replace, '<!-- <style> -->', '<style>' + newCss + '</style>');
 
     return pipe();
 }

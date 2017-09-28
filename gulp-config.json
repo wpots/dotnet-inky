@@ -5,7 +5,7 @@
 
   },
   "emailFiles": {
-      "buildRoot": "../../../../build/Website/areas/Corporate/",
+      "buildRoot": "../../../../build/Website/Areas/Corporate/",
       "stylesSrc": "./assets/styles/mail.scss",
       "stylesDest": "styles/",
       "stylesName": "mail.css",
