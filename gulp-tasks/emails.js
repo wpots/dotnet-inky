@@ -40,6 +40,9 @@ gulp.task('email-inline', function () {
         }))
         .pipe(inky())
         .pipe($.if(PRODUCTION, inliner(config.emailFiles.buildroot + config.emailFiles.stylesDest + config.emailFiles.stylesName)))
+        .pipe($.htmlmin({
+            collapseWhitespace: true
+        }))
         //files should be done once written to dest.
         .pipe(gulp.dest( config.emailFiles.buildRoot + config.emailFiles.viewDest));
 });
