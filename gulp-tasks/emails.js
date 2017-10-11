@@ -38,10 +38,24 @@ gulp.task('email-inline', function () {
         .pipe($.rename(function (path) {
             path.basename = path.basename.replace('.inky', '');
         }))
-        .pipe(inky())
+        .pipe($.replace(regex, function (match, content) {
+            var i = ignores.length; 
+            ignores[i] = content; 
+            console.log(match);
+            return "###IGNORE" + i + "###"; 
+        }))
+        .pipe(inky({
+            cheerio: {
+                lowerCaseTags: false,
+                xmlMode: false
+            }
+        }))
         .pipe($.if(PRODUCTION, inliner(config.emailFiles.buildroot + config.emailFiles.stylesDest + config.emailFiles.stylesName)))
         .pipe($.htmlmin({
             collapseWhitespace: true
+        }))
+        .pipe($.replace(/###IGNORE([0-9]+)###/ig, function (match, index) {
+            return ignores[index];
         }))
         //files should be done once written to dest.
         .pipe(gulp.dest( config.emailFiles.buildRoot + config.emailFiles.viewDest));
@@ -55,7 +69,7 @@ function inliner(css) {
         newCss = mqCss.replace(/@/g, '@@'),// to prevent conflicts with @ of .net
         pipe = lazypipe()
                 .pipe($.inlineCss, {
-                    extraCss: css,
+                    extraCss: css, //css needed for inlining styles
                     lowerCaseTags: false,
                     xmlMode: false
                     })
